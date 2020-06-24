@@ -7,15 +7,20 @@
         min-width="520px"
       >
         <p class="display-1 font-weight-medium text-center">Login to ZEETOMIC</p>
-        <v-form>
+        <v-form
+          ref="form"
+          v-model="valid"
+        >
           <v-text-field
             label="Email"
             v-model="email"
+            :rules="emailRule"
             solo
           ></v-text-field>
           <v-text-field
-            label="password"
+            label="Password"
             v-model="password"
+            :rules="passwordRule"
             solo
           ></v-text-field>
           <v-btn 
@@ -32,8 +37,11 @@
 </template>
 
 <script>
+import { validateLogin } from '~/utils/mixins/validateLogin.js';
+
 export default {
   layout: ({ isMobile }) => isMobile ? 'mobile' : 'login',
+  mixins: [validateLogin],
   data() {
     return {
       loading: false,
@@ -44,13 +52,14 @@ export default {
   },
   methods: {
     handleLogin() {
-      
-      this.$router.push('/')
+      // if(this.$refs.form.validate()) {
+        this.$router.push('/')
+      // }
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

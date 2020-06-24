@@ -20,6 +20,6 @@ export default {
 
 <style>
 .v-application {
-  background: #fafafa!important;
+  background: #E9EFF3!important;
 }
 </style>

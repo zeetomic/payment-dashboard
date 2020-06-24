@@ -2,7 +2,6 @@
   <v-row>
     <v-col>
       <v-card
-        color="#5068a9"
         class="pa-4"
         flat
       >
@@ -11,7 +10,6 @@
     </v-col>
     <v-col>
       <v-card
-        color="#5068a9"
         class="pa-4"
         flat
       >

@@ -64,12 +64,14 @@ export default {
     ]
   },
   vuetify: {
+    customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
     },
     defaultAssets: {
       icons: 'fa'
     },
+    treeShake: true,
   },
   axios: {
     baseURL: 'https://testnet-api.zeetomic.com/pub/v1'

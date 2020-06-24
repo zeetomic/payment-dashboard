@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar 
-      color="#5068a9"
+      color="#28385e"
       dense
       fixed
       app
@@ -20,6 +20,7 @@
       <v-spacer></v-spacer>
 
       <v-btn 
+        dark
         text 
         @click="LogOut"
       >
@@ -34,7 +35,6 @@
       v-model="navbar"
       color="#fff"
       app
-      light
       floating
     >
       <v-list-item v-if="!miniVariant">
@@ -83,7 +83,7 @@ export default {
     return {
       items: [
         { title: 'Dashboard', icon: 'fas fa-plus-square', path: '/' },
-        { title: 'Merchant Management', icon: 'fas fa-building', path: '/merchant'  },
+        // { title: 'Merchant Management', icon: 'fas fa-building', path: '/merchant'  },
         { title: 'Report', icon: 'fas fa-scroll', path: '/report'  },
         { title: 'API', icon: 'fas fa-key', path: '/apikey'  },
         { title: 'Setting', icon: 'fas fa-cogs', path: '/setting'  },

@@ -25,8 +25,22 @@ export const mutations = {
 
 export const actions = {
 // Login
-  async handleLogin() {
-    await this.$axios.post()
+  async handleLogin({commit}, data) {
+    await this.$axios.post('', {
+      email: data.email,
+      password: data.password
+    })
+    .then(res => {
+      if(res.data.token) {
+        commit('SET_TOKEN', res.data.token);
+        commit('SET_TYPE', 'success');
+        Cookie.set('token', res.data.token);
+      } else if(res.data.error){
+        commit('SET_MSG', res.data.error.message);
+      } else {
+        commit('SET_MSG', res.data.message);
+      }
+    })
   },  
 // Logout
   async handleLogOut({commit}) {
