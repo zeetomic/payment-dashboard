@@ -12,7 +12,7 @@ export const validatePayment = {
         () => !!this.apisec || 'API SEC is required'
       ],
       destinationRule: [
-        () => !!this.destinationRule || 'DESTINATION is required'
+        () => !!this.destination || 'DESTINATION is required'
       ],
       asset_typeRule: [
         () => !!this.asset_code || 'ASSET TYPE is required'
