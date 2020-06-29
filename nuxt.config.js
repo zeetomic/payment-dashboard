@@ -44,6 +44,8 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/toast'
   ],
   /*
   ** vuetify module configuration
@@ -74,7 +76,7 @@ export default {
     treeShake: true,
   },
   axios: {
-    baseURL: 'https://testnet-api.zeetomic.com/pub/v1'
+    baseURL: 'https://testnet-api.zeetomic.com'
   },
   /*
   ** Build configuration

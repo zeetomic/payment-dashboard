@@ -20,6 +20,7 @@
           <v-text-field
             label="Password"
             v-model="password"
+            type="password"
             :rules="passwordRule"
             solo
           ></v-text-field>
@@ -52,9 +53,15 @@ export default {
   },
   methods: {
     handleLogin() {
-      // if(this.$refs.form.validate()) {
-        this.$router.push('/')
-      // }
+      if(this.$refs.form.validate()) {
+        this.$store.dispatch('user/handleLogin', {
+          email: this.email,
+          password: this.password
+        })
+        .then(_ => {
+          this.$router.push('/')
+        })
+      }
     }
   }
 }

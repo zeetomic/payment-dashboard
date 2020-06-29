@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 
-export const profile = function({req, redirect, $axios}) {
+export const portfolio = function({req, redirect, $axios}) {
   let token;
   if (process.server) {
     const jwtCookie = req.headers.cookie
@@ -17,10 +17,10 @@ export const profile = function({req, redirect, $axios}) {
       Authorization: "Bearer " + token
     }
   };
-  return $axios.get("/pub/v1/userprofile", config)
+  return $axios.get("/pub/v1/portforlio", config)
     .then((res) => {
       return {
-        user_profile: res.data,
+        portfolio: res.data,
       }
     })
     .catch((e) => {

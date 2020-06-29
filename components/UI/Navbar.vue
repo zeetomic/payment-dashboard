@@ -83,7 +83,7 @@ export default {
     return {
       items: [
         { title: 'Dashboard', icon: 'fas fa-plus-square', path: '/' },
-        // { title: 'Merchant Management', icon: 'fas fa-building', path: '/merchant'  },
+        { title: 'Payment', icon: 'fas fa-money-bill-wave', path: '/payment'  },
         { title: 'Report', icon: 'fas fa-scroll', path: '/report'  },
         { title: 'API', icon: 'fas fa-key', path: '/apikey'  },
         { title: 'Setting', icon: 'fas fa-cogs', path: '/setting'  },
@@ -98,17 +98,17 @@ export default {
     }
   },
   mounted() {
-    // this.getProfile();
+    this.getProfile();
   },
   methods: {
-    // async getProfile() {
-    //   await this.$axios.setToken(Cookie.get('token'), 'Bearer');
-    //   await this.$axios.get('/userprofile')
-    //   .then(res => {
-    //     this.user_profile = res.data;
-    //     this.fetching = false;
-    //   })
-    // },
+    async getProfile() {
+      await this.$axios.setToken(Cookie.get('token'), 'Bearer');
+      await this.$axios.get('pub/v1/userprofile')
+      .then(res => {
+        this.user_profile = res.data;
+        this.fetching = false;
+      })
+    },
     handleNav() {
       if(screen.width < 1265) {
         this.navbar = !this.navbar;

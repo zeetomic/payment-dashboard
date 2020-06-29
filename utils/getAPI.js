@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 
-export const profile = function({req, redirect, $axios}) {
+export const api = function({req, redirect, $axios}) {
   let token;
   if (process.server) {
     const jwtCookie = req.headers.cookie
@@ -17,10 +17,10 @@ export const profile = function({req, redirect, $axios}) {
       Authorization: "Bearer " + token
     }
   };
-  return $axios.get("/pub/v1/userprofile", config)
+  return $axios.get("/apis/v1/request-api-key", config)
     .then((res) => {
       return {
-        user_profile: res.data,
+        api: res.data.message,
       }
     })
     .catch((e) => {

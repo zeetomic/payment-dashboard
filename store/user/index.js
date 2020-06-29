@@ -26,7 +26,7 @@ export const mutations = {
 export const actions = {
 // Login
   async handleLogin({commit}, data) {
-    await this.$axios.post('', {
+    await this.$axios.post('/pub/v1/partnerlogin', {
       email: data.email,
       password: data.password
     })
@@ -42,6 +42,27 @@ export const actions = {
       }
     })
   },  
+// Payment
+  async handlePayment({commit}, data) {
+    await this.$axios.post('/apis/v1/payment', {
+      id: data.id,
+      apikey: data.apikey,
+      apisec: data.apisec,
+      destination: data.destination,
+      asset_code: data.asset_code,
+      amount: data.amount,
+      memo: data.amount
+    })
+    .then(async(res) => {
+      if(!res.data.message.error) {
+        await commit('SET_MSG', res.data.message);
+        await commit('SET_TYPE', 'success');
+      } else {
+        await commit('SET_MSG', res.data.message.error);
+        await commit('SET_TYPE', 'error');
+      }
+    })
+  },
 // Logout
   async handleLogOut({commit}) {
     await commit('SET_TOKEN', '');
