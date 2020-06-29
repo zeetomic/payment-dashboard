@@ -8,17 +8,19 @@
       >
         <p class="text-center headline">API KEY</p>
         <br>
-        <span class="pl-4">API KEY: {{api.apikey}}</span>
-        <input type="text" id="apikey" v-model="api.apikey" />
+        <span class="pl-4">API KEY: {{apikey}}</span>
+        <input type="text" id="apikey" v-model="apikey" />
         <v-btn icon color="blue" @click="copyAPI('apikey')">
           <v-icon small>fas fa-copy</v-icon>
         </v-btn>
         <hr class="my-4">
-        <span class="pl-4">API SEC: {{api.apisec}}</span>
-        <input type="text" id="apisec" v-model="api.apisec" />
+        <span class="pl-4">API SEC: {{apisec}}</span>
+        <input type="text" id="apisec" v-model="apisec" />
         <v-btn icon color="blue" @click="copyAPI('apisec')">
           <v-icon small>fas fa-copy</v-icon>
         </v-btn>
+        <div class="py-2"></div>
+        <v-btn v-if="showbtn" class="primary" width="100%" :loading="loading" @click="handleReveal">Reveal</v-btn>
       </v-card>
     </v-col>
   </v-row>
@@ -26,11 +28,31 @@
 </template>
 
 <script>
-import { api } from '~/utils/getAPI.js';
+import Cookie from 'js-cookie';
 
 export default {
-  asyncData: api,
+  data() {
+    return {
+      apikey: '********',
+      apisec: '********',
+
+      showbtn: true,
+      loading: false
+    }
+  },
   methods: {
+    handleReveal() {
+      this.loading = true;
+      this.$axios.setToken(Cookie.get('token'), 'Bearer');
+      this.$axios.get('/apis/v1/request-api-key')
+      .then(res => {
+        const { apikey, apisec } = res.data.message;
+        this.apikey = apikey;
+        this.apisec = apisec;
+        this.showbtn = false;
+        this.loading = false;
+      })
+    },
     copyAPI(param) {
       /* Get the text field */
       var copyText = document.getElementById(param);

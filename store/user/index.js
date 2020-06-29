@@ -1,4 +1,5 @@
 import Cookie from 'js-cookie';
+import { async } from 'rsvp';
 
 export const state = () => ({
   msg: '',
@@ -61,6 +62,16 @@ export const actions = {
         await commit('SET_MSG', res.data.message.error);
         await commit('SET_TYPE', 'error');
       }
+    })
+  },
+// Getwallet
+  async handleGetWallet({commit}, data) {
+    await this.$axios.post('/apis/v1/get-wallet', {
+      apikey: data.apikey,
+      apisec: data.apisec
+    })
+    .then(async(res) => {
+
     })
   },
 // Logout

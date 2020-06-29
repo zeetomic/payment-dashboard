@@ -83,7 +83,7 @@ export default {
     return {
       items: [
         { title: 'Dashboard', icon: 'fas fa-plus-square', path: '/' },
-        { title: 'Payment', icon: 'fas fa-money-bill-wave', path: '/payment'  },
+        // { title: 'Payment', icon: 'fas fa-money-bill-wave', path: '/payment'  },
         { title: 'Report', icon: 'fas fa-scroll', path: '/report'  },
         { title: 'API', icon: 'fas fa-key', path: '/apikey'  },
         { title: 'Setting', icon: 'fas fa-cogs', path: '/setting'  },
