@@ -83,6 +83,8 @@ import { validatePayment } from '~/utils/mixins/validatePayment.js';
 import { message } from '~/utils/mixins/message.js';
 
 export default {
+  layout: ({ isMobile }) => isMobile ? 'mobile' : 'default',
+  middleware: ['auth'],
   mixins: [validatePayment, message],
   asyncData: portfolio,
   data() {

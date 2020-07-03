@@ -10,13 +10,13 @@
         <br>
         <span class="pl-4">API KEY: {{apikey}}</span>
         <input type="text" id="apikey" v-model="apikey" />
-        <v-btn icon color="blue" @click="copyAPI('apikey')">
+        <v-btn icon color="blue" v-if="copy" @click="copyAPI('apikey')">
           <v-icon small>fas fa-copy</v-icon>
         </v-btn>
         <hr class="my-4">
         <span class="pl-4">API SEC: {{apisec}}</span>
         <input type="text" id="apisec" v-model="apisec" />
-        <v-btn icon color="blue" @click="copyAPI('apisec')">
+        <v-btn icon color="blue" v-if="copy" @click="copyAPI('apisec')">
           <v-icon small>fas fa-copy</v-icon>
         </v-btn>
         <div class="py-2"></div>
@@ -31,13 +31,16 @@
 import Cookie from 'js-cookie';
 
 export default {
+  layout: ({ isMobile }) => isMobile ? 'mobile' : 'default',
+  middleware: ['auth'],
   data() {
     return {
       apikey: '********',
       apisec: '********',
 
       showbtn: true,
-      loading: false
+      loading: false,
+      copy: false
     }
   },
   methods: {
@@ -51,6 +54,7 @@ export default {
         this.apisec = apisec;
         this.showbtn = false;
         this.loading = false;
+        this.copy = true;
       })
     },
     copyAPI(param) {
@@ -62,7 +66,7 @@ export default {
       /* Copy the text inside the text field */
       document.execCommand("copy");
       /* Alert the copied text */
-      alert("Copied the text: " + copyText.value);
+      alert("Copied");
     }
   }
 }

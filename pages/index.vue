@@ -33,6 +33,7 @@ import { profile } from '~/utils/getProfile.js';
 
 export default {
   layout: ({ isMobile }) => isMobile ? 'mobile' : 'default',
+  middleware: ['auth'],
   asyncData: profile,
   data() {
     return {

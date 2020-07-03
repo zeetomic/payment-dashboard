@@ -22,6 +22,10 @@ export default {
   /*
   ** Global CSS
   */
+  loading: {
+    color: 'white',
+    height: '2px'
+  },
   css: [
     '~/assets/transition.css'
   ],
